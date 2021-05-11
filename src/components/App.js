@@ -7,10 +7,14 @@ import Dates from "./Dates";
 import Seats from "./Seats";
 import Success from "./Success";
 import Footer from "./Footer";
+import ResetCSS from "./ResetCSS";
+import GlobalStyle from "./GlobalStyle";
 
 export default function App() {
     return (
         <BrowserRouter>
+            <ResetCSS />
+            <GlobalStyle />
             <Header />
             <Switch>
                 <Route path="/" exact>
