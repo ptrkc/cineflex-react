@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledHeader = styled.div`
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
