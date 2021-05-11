@@ -7,7 +7,7 @@ const MoviesList = styled.ul`
     justify-content: center;
     flex-wrap: wrap;
 `;
-const Title = styled.h2`
+const Title = styled.p`
     font-size: 24px;
     display: flex;
     align-items: center;
