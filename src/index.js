@@ -1,7 +1,4 @@
 import ReactDOM from "react-dom";
-
-function App() {
-    return <strong>Hello World</strong>;
-}
+import App from "./components/App.js";
 
 ReactDOM.render(<App />, document.querySelector(".root"));
