@@ -15,14 +15,16 @@ const TimesList = styled.div`
 const Title = styled.p`
     font-size: 24px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     color: #293845;
-    height: 110px;
+    height: 66px;
+    margin-bottom: 40px;
 `;
 const Day = styled.p`
     font-size: 20px;
     color: #293845;
+    margin-bottom: 32px;
 `;
 const Div = styled.div`
     margin: 0px 24px;

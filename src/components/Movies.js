@@ -10,10 +10,11 @@ const MoviesList = styled.ul`
 const Title = styled.p`
     font-size: 24px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     color: #293845;
-    height: 110px;
+    height: 66px;
+    margin-bottom: 32px;
 `;
 export default function Movies() {
     const getMoviesResponse = [
