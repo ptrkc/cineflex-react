@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
 import Header from "./Header";
 import Movies from "./Movies";
 import Dates from "./Dates";
