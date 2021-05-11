@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import Movies from "./Movies";
-import Dates from "./Dates";
+import DateAndTime from "./DateAndTime";
 import Seats from "./Seats";
 import Success from "./Success";
 import Footer from "./Footer";
@@ -20,7 +20,7 @@ export default function App() {
                     <Movies />
                 </Route>
                 <Route path="/filme">
-                    <Dates />
+                    <DateAndTime />
                 </Route>
                 <Route path="/sessao">
                     <Seats />
