@@ -7,6 +7,9 @@ import axios from "axios";
 
 const Div = styled.div`
     margin: 0px 24px;
+    a {
+        margin: auto;
+    }
 `;
 const Title = styled.p`
     font-size: 24px;
@@ -32,7 +35,7 @@ const GuideStyle = styled.div`
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0px auto 18px;
+    margin: 0px auto 40px;
     max-width: 600px;
     min-width: 265px;
 
@@ -47,6 +50,25 @@ const GuideStyle = styled.div`
         li {
             margin-bottom: 10px;
         }
+    }
+`;
+const InputsStyle = styled.div`
+    margin: 0px auto 40px;
+    max-width: 600px;
+    min-width: 265px;
+    font-size: 18px;
+    color: #293845;
+    margin-bottom: 56px;
+
+    p {
+        margin-bottom: 5px;
+    }
+    input {
+        width: 100%;
+        height: 51px;
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -102,6 +124,17 @@ export default function Seats() {
         );
     }
 
+    function Inputs() {
+        return (
+            <InputsStyle>
+                <p>Nome do comprador:</p>
+                <input></input>
+                <p>CPF do comprador:</p>
+                <input></input>
+            </InputsStyle>
+        );
+    }
+
     return (
         <Div>
             <Title>Selecione o(s) assento(s)</Title>
@@ -117,6 +150,10 @@ export default function Seats() {
                 </SeatsList>
             ))}
             <Guide />
+            <Inputs />
+            <Button as={Link} to={`/sucesso`}>
+                Reservar assento(s)
+            </Button>
         </Div>
     );
 }
