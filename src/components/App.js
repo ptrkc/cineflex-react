@@ -19,10 +19,10 @@ export default function App() {
                 <Route path="/" exact>
                     <Movies />
                 </Route>
-                <Route path="/sessoes/:idFilme">
+                <Route path="/sessoes/:id">
                     <DateAndTime />
                 </Route>
-                <Route path="/assentos/:idSessao">
+                <Route path="/assentos/:id">
                     <Seats />
                 </Route>
                 <Route path="/sucesso">

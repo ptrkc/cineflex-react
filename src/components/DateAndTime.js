@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Movie from "./Movie";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const TimesList = styled.div`
     display: flex;
@@ -31,48 +33,34 @@ const Div = styled.div`
 `;
 
 export default function DateAndTime() {
-    const getDatesResponse = [
-        {
-            id: 1,
-            day: "Quinta-feira - 24/06/2021",
-            times: [
-                { time: "15:00", id: 1 },
-                { time: "19:00", id: 2 },
-            ],
-        },
-        {
-            id: 2,
-            day: "Sexta-feira - 25/06/2021",
-            times: [
-                { time: "15:00", id: 3 },
-                { time: "19:00", id: 4 },
-            ],
-        },
-        {
-            id: 3,
-            day: "Sábado - 26/06/2021",
-            times: [
-                { time: "15:00", id: 5 },
-                { time: "19:00", id: 6 },
-            ],
-        },
-    ];
+    const { id } = useParams();
+    const [allShowtimes, setAllShowtimes] = useState([]);
+    useEffect(() => {
+        const showtimesRequest = axios.get(
+            `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${id}/showtimes`
+        );
+        showtimesRequest.then((response) => {
+            setAllShowtimes([...response.data.days]);
+        });
+    }, []);
     return (
         <Div>
             <Title>Selecione o horário</Title>
-            {getDatesResponse.map((date) => {
+            {allShowtimes.map((date) => {
                 return (
                     <div key={date.id}>
-                        <Day>{date.day}</Day>
+                        <Day>
+                            {date.day} - {date.weekday}
+                        </Day>
                         <TimesList>
-                            {date.times.map((time) => (
+                            {date.showtimes.map((showtime) => (
                                 <Button
                                     size="small"
-                                    key={time.id}
+                                    key={showtime.id}
                                     as={Link}
-                                    to={`/sessao/${String(time.id)}`}
+                                    to={`/sessao/${String(showtime.id)}`}
                                 >
-                                    {time.time}
+                                    {showtime.name}
                                 </Button>
                             ))}
                         </TimesList>
