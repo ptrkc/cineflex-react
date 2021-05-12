@@ -30,6 +30,8 @@ export default function SeatButton(props) {
     function handleClick(isAvailable) {
         if (isAvailable) {
             toggleSelection(name);
+        } else {
+            alert("Esse assento não está disponível.");
         }
     }
 
