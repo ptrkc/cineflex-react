@@ -5,7 +5,6 @@ import Movies from "./Movies";
 import DateAndTime from "./DateAndTime";
 import Seats from "./Seats";
 import Success from "./Success";
-import Footer from "./Footer";
 import ResetCSS from "./ResetCSS";
 import GlobalStyle from "./GlobalStyle";
 
@@ -29,7 +28,6 @@ export default function App() {
                     <Success />
                 </Route>
             </Switch>
-            {/* <Footer/> */}
         </BrowserRouter>
     );
 }

@@ -4,9 +4,10 @@ import Button from "./Button";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Footer from "./Footer";
 
 const Div = styled.div`
-    margin: 0px 24px;
+    margin: 0px 24px 150px;
     a {
         margin: auto;
     }
@@ -66,15 +67,24 @@ const InputsStyle = styled.div`
     input {
         width: 100%;
         height: 51px;
+        padding-left: 10px;
         border: 1px solid #d5d5d5;
         border-radius: 3px;
         margin-bottom: 10px;
+        font-size: 18px;
+
+        &::placeholder {
+            font-family: Roboto;
+            font-style: italic;
+            color: #afafaf;
+        }
     }
 `;
 
 export default function Seats() {
     const { idShowtime } = useParams();
     const [allSeats, setAllSeats] = useState([]);
+    const [footerData, setFooterData] = useState([]);
     useEffect(() => {
         const seatsRequest = axios.get(
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idShowtime}/seats`
@@ -82,6 +92,14 @@ export default function Seats() {
         seatsRequest.then((response) => {
             response.data.seats.forEach((seat) => (seat.selected = false));
             setAllSeats([...response.data.seats]);
+            setFooterData({
+                id: response.data.movie.id,
+                title: response.data.movie.title,
+                posterURL: response.data.movie.posterURL,
+                weekday: response.data.day.weekday,
+                name: response.data.name,
+                small: true,
+            });
         });
     }, [idShowtime]);
 
@@ -128,9 +146,9 @@ export default function Seats() {
         return (
             <InputsStyle>
                 <p>Nome do comprador:</p>
-                <input></input>
+                <input type="text" placeholder="Digite seu nome..."></input>
                 <p>CPF do comprador:</p>
-                <input></input>
+                <input type="number" placeholder="Digite seu CPF..."></input>
             </InputsStyle>
         );
     }
@@ -154,6 +172,7 @@ export default function Seats() {
             <Button as={Link} to={`/sucesso`}>
                 Reservar assento(s)
             </Button>
+            <Footer movie={footerData} />
         </Div>
     );
 }

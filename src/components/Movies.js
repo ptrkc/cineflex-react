@@ -8,6 +8,8 @@ const MoviesList = styled.ul`
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    max-width: 1080px;
+    margin: auto;
 `;
 const Title = styled.p`
     font-size: 24px;

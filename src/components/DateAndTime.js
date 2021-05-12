@@ -3,6 +3,7 @@ import Button from "./Button";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Footer from "./Footer";
 
 const TimesList = styled.div`
     display: flex;
@@ -28,18 +29,25 @@ const Day = styled.p`
     margin-bottom: 32px;
 `;
 const Div = styled.div`
-    margin: 0px 24px;
+    margin: 0px 24px 150px;
 `;
 
 export default function DateAndTime() {
     const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
+    const [footerData, setFooterData] = useState([]);
     useEffect(() => {
         const showtimesRequest = axios.get(
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`
         );
         showtimesRequest.then((response) => {
             setAllShowtimes([...response.data.days]);
+            setFooterData({
+                id: response.data.id,
+                title: response.data.title,
+                posterURL: response.data.posterURL,
+                small: true,
+            });
         });
     }, [idMovie]);
     return (
@@ -66,6 +74,7 @@ export default function DateAndTime() {
                     </div>
                 );
             })}
+            <Footer movie={footerData} />
         </Div>
     );
 }
