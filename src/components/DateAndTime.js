@@ -33,11 +33,11 @@ const Div = styled.div`
 `;
 
 export default function DateAndTime() {
-    const { id } = useParams();
+    const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
     useEffect(() => {
         const showtimesRequest = axios.get(
-            `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${id}/showtimes`
+            `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`
         );
         showtimesRequest.then((response) => {
             setAllShowtimes([...response.data.days]);
@@ -50,7 +50,7 @@ export default function DateAndTime() {
                 return (
                     <div key={date.id}>
                         <Day>
-                            {date.day} - {date.weekday}
+                            {date.weekday} - {date.date}
                         </Day>
                         <TimesList>
                             {date.showtimes.map((showtime) => (
