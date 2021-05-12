@@ -27,6 +27,28 @@ const SeatsList = styled.ul`
     max-width: 600px;
     min-width: 265px;
 `;
+const GuideStyle = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px auto 18px;
+    max-width: 600px;
+    min-width: 265px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #4e5a65;
+        font-size: 13px;
+
+        li {
+            margin-bottom: 10px;
+        }
+    }
+`;
 
 export default function Seats() {
     const { idShowtime } = useParams();
@@ -59,6 +81,26 @@ export default function Seats() {
         }
         setAllSeats([...allSeats]);
     }
+    function Guide() {
+        return (
+            <GuideStyle>
+                <div>
+                    <SeatButton seat={{ isAvailable: true, selected: true }} />
+                    Selecionado
+                </div>
+                <div>
+                    <SeatButton seat={{ isAvailable: true, selected: false }} />
+                    Disponível
+                </div>
+                <div>
+                    <SeatButton
+                        seat={{ isAvailable: false, selected: false }}
+                    />
+                    Indisponível
+                </div>
+            </GuideStyle>
+        );
+    }
 
     return (
         <Div>
@@ -74,6 +116,7 @@ export default function Seats() {
                     ))}
                 </SeatsList>
             ))}
+            <Guide />
         </Div>
     );
 }

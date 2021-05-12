@@ -27,7 +27,7 @@ export default function SeatButton(props) {
     const { name, isAvailable, selected } = props.seat;
     const toggleSelection = props.toggleSelection;
 
-    function handleClick(isAvailable) {
+    function handleClick() {
         if (isAvailable) {
             toggleSelection(name);
         } else {
@@ -40,7 +40,7 @@ export default function SeatButton(props) {
             <SeatBtn
                 available={isAvailable}
                 className={selected ? "selected" : ""}
-                onClick={() => handleClick(isAvailable)}
+                onClick={name ? handleClick : undefined}
             >
                 {name}
             </SeatBtn>
