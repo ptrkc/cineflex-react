@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Movie from "./Movie";
 import SeatButton from "./SeatButton";
 import Button from "./Button";
 import { Link, useParams } from "react-router-dom";
@@ -25,7 +24,6 @@ const SeatsList = styled.ul`
     align-items: center;
     flex-wrap: wrap;
     margin: 0px auto 18px;
-    width: 100%;
     max-width: 600px;
     min-width: 265px;
 `;
@@ -41,7 +39,7 @@ export default function Seats() {
             response.data.seats.forEach((seat) => (seat.selected = false));
             setAllSeats([...response.data.seats]);
         });
-    }, []);
+    }, [idShowtime]);
 
     function createRows() {
         const rows = Math.ceil(allSeats.length / 10);

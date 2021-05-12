@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Movie from "./Movie";
 import Button from "./Button";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -42,7 +41,7 @@ export default function DateAndTime() {
         showtimesRequest.then((response) => {
             setAllShowtimes([...response.data.days]);
         });
-    }, []);
+    }, [idMovie]);
     return (
         <Div>
             <Title>Selecione o horário</Title>
