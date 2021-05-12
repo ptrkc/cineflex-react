@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const MoviesList = styled.ul`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 `;
 const Title = styled.p`

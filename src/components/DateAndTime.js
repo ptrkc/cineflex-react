@@ -58,7 +58,7 @@ export default function DateAndTime() {
                                     size="small"
                                     key={showtime.id}
                                     as={Link}
-                                    to={`/sessao/${String(showtime.id)}`}
+                                    to={`/assentos/${String(showtime.id)}`}
                                 >
                                     {showtime.name}
                                 </Button>

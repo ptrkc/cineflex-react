@@ -2,8 +2,9 @@ import styled from "styled-components";
 import Movie from "./Movie";
 import SeatButton from "./SeatButton";
 import Button from "./Button";
-import { Link } from "react-router-dom";
-import React from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Div = styled.div`
     margin: 0px 24px;
@@ -94,27 +95,37 @@ export default function Seats() {
             { id: 600, name: "50", isAvailable: true },
         ],
     };
-    seatsResponse.seats.forEach((seat) => (seat.selected = false));
-    const [seatsState, setSeatsState] = React.useState(seatsResponse);
+
+    const { id } = useParams();
+    const [allSeats, setAllSeats] = useState([]);
+    useEffect(() => {
+        const seatsRequest = axios.get(
+            `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${id}/seats`
+        );
+        seatsRequest.then((response) => {
+            console.log(response.data);
+            response.data.seats.forEach((seat) => (seat.selected = false));
+            setAllSeats([...response.data.seats]);
+        });
+    }, []);
+
     function createRows() {
-        const rows = Math.ceil(seatsState.seats.length / 10);
+        const rows = Math.ceil(allSeats.length / 10);
         const rowsArrays = [];
         for (let i = 0; i < rows; i++) {
-            const cutRow = seatsState.seats.slice(i * 10, i * 10 + 10);
+            const cutRow = allSeats.slice(i * 10, i * 10 + 10);
             rowsArrays.push({ id: i, seats: cutRow });
         }
         return rowsArrays;
     }
     function toggleSelection(name) {
-        const seatToToggle = seatsState.seats.find(
-            (seat) => seat.name === name
-        );
+        const seatToToggle = allSeats.find((seat) => seat.name === name);
         if (!seatToToggle.selected) {
             seatToToggle.selected = true;
         } else {
             seatToToggle.selected = false;
         }
-        setSeatsState({ ...seatsState });
+        setAllSeats([...allSeats]);
     }
 
     return (
