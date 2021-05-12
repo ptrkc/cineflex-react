@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Movie = styled.li`
@@ -17,11 +18,11 @@ const Movie = styled.li`
 `;
 
 export default function Movies(props) {
-    const movie = props.movie;
+    const { id, title, posterURL } = props.movie;
 
     return (
-        <Movie onClick={() => console.log(movie.id)}>
-            <img src={movie.img} alt={movie.name} />
+        <Movie as={Link} to={`/sessoes/${id}`}>
+            <img src={posterURL} alt={title} />
         </Movie>
     );
 }
