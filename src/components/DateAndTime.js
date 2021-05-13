@@ -8,7 +8,10 @@ import Footer from "./Footer";
 export default function DateAndTime() {
     const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
-    const [footerData, setFooterData] = useState([]);
+    const [footerData, setFooterData] = useState({
+        small: true,
+        infoLoaded: false,
+    });
     useEffect(() => {
         const showtimesRequest = axios.get(
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`
@@ -16,10 +19,11 @@ export default function DateAndTime() {
         showtimesRequest.then((response) => {
             setAllShowtimes([...response.data.days]);
             setFooterData({
+                ...footerData,
                 id: response.data.id,
                 title: response.data.title,
                 posterURL: response.data.posterURL,
-                small: true,
+                infoLoaded: true,
             });
         });
     }, [idMovie]);
