@@ -12,7 +12,7 @@ const MovieStyle = styled.li`
     border-radius: 3px;
     margin: 5px 5px;
     background: #ffffff;
-
+    flex-shrink: 0;
     img {
         width: 100%;
     }
