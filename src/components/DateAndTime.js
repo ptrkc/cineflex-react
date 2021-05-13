@@ -5,33 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./Footer";
 
-const TimesList = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    margin: 22px 0px;
-
-    button {
-        margin: 4px;
-    }
-`;
-const Title = styled.p`
-    font-size: 24px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    color: #293845;
-    height: 66px;
-    margin-bottom: 40px;
-`;
-const Day = styled.p`
-    font-size: 20px;
-    color: #293845;
-    margin-bottom: 32px;
-`;
-const Div = styled.div`
-    margin: 0px 24px 150px;
-`;
-
 export default function DateAndTime() {
     const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
@@ -78,3 +51,30 @@ export default function DateAndTime() {
         </Div>
     );
 }
+
+const TimesList = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin: 22px 0px;
+
+    button {
+        margin: 4px;
+    }
+`;
+const Title = styled.p`
+    font-size: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #293845;
+    height: 66px;
+    margin-bottom: 40px;
+`;
+const Day = styled.p`
+    font-size: 20px;
+    color: #293845;
+    margin-bottom: 32px;
+`;
+const Div = styled.div`
+    margin: 0px 24px 150px;
+`;

@@ -3,23 +3,6 @@ import styled from "styled-components";
 import Movie from "./Movie";
 import { useState, useEffect } from "react";
 
-const MoviesList = styled.ul`
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    max-width: 1080px;
-    margin: auto;
-`;
-const Title = styled.p`
-    font-size: 24px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    color: #293845;
-    height: 66px;
-    margin-bottom: 32px;
-`;
 export default function Movies() {
     const [movies, setMovies] = useState([]);
 
@@ -43,3 +26,21 @@ export default function Movies() {
         </>
     );
 }
+
+const MoviesList = styled.ul`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 1080px;
+    margin: auto;
+`;
+const Title = styled.p`
+    font-size: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #293845;
+    height: 66px;
+    margin-bottom: 32px;
+`;

@@ -1,6 +1,19 @@
 import styled from "styled-components";
 import Movie from "./Movie";
 
+export default function Footer(props) {
+    const { title, weekday, name } = props.movie;
+    return (
+        <StyledFooter>
+            <Movie movie={props.movie} />
+            <div>
+                <div>{title}</div>
+                <div>{weekday && name ? `${weekday} - ${name}` : ""}</div>
+            </div>
+        </StyledFooter>
+    );
+}
+
 const StyledFooter = styled.div`
     position: fixed;
     display: flex;
@@ -21,16 +34,3 @@ const StyledFooter = styled.div`
         margin-left: 14px;
     }
 `;
-
-export default function Footer(props) {
-    const { title, weekday, name } = props.movie;
-    return (
-        <StyledFooter>
-            <Movie movie={props.movie} />
-            <div>
-                <div>{title}</div>
-                <div>{weekday && name ? `${weekday} - ${name}` : ""}</div>
-            </div>
-        </StyledFooter>
-    );
-}

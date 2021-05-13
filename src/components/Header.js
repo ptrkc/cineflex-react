@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export default function Header() {
+    return <StyledHeader>CINEFLEX</StyledHeader>;
+}
+
 const StyledHeader = styled.div`
     position: fixed;
     display: flex;
@@ -13,7 +17,3 @@ const StyledHeader = styled.div`
     color: #e8833a;
     font-size: 34px;
 `;
-
-export default function Header() {
-    return <StyledHeader>CINEFLEX</StyledHeader>;
-}
