@@ -7,8 +7,14 @@ import Seats from "./Seats";
 import Success from "./Success";
 import ResetCSS from "./ResetCSS";
 import GlobalStyle from "./GlobalStyle";
+import Footer from "./Footer";
 
 export default function App() {
+    const [footerData, setFooterData] = useState({
+        small: true,
+        infoLoaded: false,
+    });
+
     return (
         <BrowserRouter>
             <ResetCSS />
@@ -19,15 +25,16 @@ export default function App() {
                     <Movies />
                 </Route>
                 <Route path="/sessoes/:idMovie">
-                    <DateAndTime />
+                    <DateAndTime footer={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/assentos/:idShowtime">
-                    <Seats />
+                    <Seats footer={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/sucesso">
                     <Success />
                 </Route>
             </Switch>
+            <Footer movie={footerData} />
         </BrowserRouter>
     );
 }

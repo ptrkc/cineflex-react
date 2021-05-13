@@ -6,13 +6,11 @@ import axios from "axios";
 import Footer from "./Footer";
 import Spinner from "./Spinner";
 
-export default function DateAndTime() {
+export default function DateAndTime(props) {
     const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
-    const [footerData, setFooterData] = useState({
-        small: true,
-        infoLoaded: false,
-    });
+    const [footerData, setFooterData] = props.footer;
+
     useEffect(() => {
         const showtimesRequest = axios.get(
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`
@@ -53,7 +51,6 @@ export default function DateAndTime() {
                     </div>
                 );
             })}
-            <Footer movie={footerData} />
         </Div>
     );
 }

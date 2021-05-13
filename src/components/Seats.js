@@ -8,15 +8,12 @@ import axios from "axios";
 import Footer from "./Footer";
 import Spinner from "./Spinner";
 
-export default function Seats() {
+export default function Seats(props) {
     const { idShowtime } = useParams();
     const [allSeats, setAllSeats] = useState([]);
     const [bookRequest, setBookRequest] = useState([]);
     const [personalInfo, setPersonalInfo] = useState({ name: "", cpf: "" });
-    const [footerData, setFooterData] = useState({
-        small: true,
-        infoLoaded: false,
-    });
+    const [footerData, setFooterData] = props.footer;
 
     useEffect(() => {
         const seatsRequest = axios.get(
@@ -101,7 +98,6 @@ export default function Seats() {
             {!!allSeats.length ? <Guide /> : null}
             <InfoInputs personalInfo={personalInfo} updateInfo={updateInfo} />
             <Button onClick={bookSeats}>Reservar assento(s)</Button>
-            <Footer movie={footerData} />
         </Div>
     );
 }
