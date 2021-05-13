@@ -6,10 +6,12 @@ export default function Footer(props) {
     console.log(props);
     return (
         <StyledFooter infoLoaded={infoLoaded}>
-            <Movie movie={props.movie} />
             <div>
-                <div>{title}</div>
-                <div>{weekday && name ? `${weekday} - ${name}` : ""}</div>
+                <Movie movie={props.movie} />
+                <div className="showtime-info">
+                    <div>{title}</div>
+                    <div>{weekday && name ? `${weekday} - ${name}` : ""}</div>
+                </div>
             </div>
         </StyledFooter>
     );
@@ -17,9 +19,6 @@ export default function Footer(props) {
 
 const StyledFooter = styled.div`
     position: fixed;
-    display: flex;
-    align-items: center;
-    padding: 0px 3px;
     height: 117px;
     right: 0;
     left: 0;
@@ -27,7 +26,16 @@ const StyledFooter = styled.div`
     background: #dfe6ed;
     border-top: 1px solid #9eadba;
     transition: 1s;
-    & > div:last-child {
+
+    & > div {
+        max-width: 600px;
+        margin: 0px auto;
+        display: flex;
+        align-items: center;
+        padding: 0px 3px;
+        height: 100%;
+    }
+    .showtime-info {
         flex-direction: column;
         font-size: 26px;
         line-height: 30px;
