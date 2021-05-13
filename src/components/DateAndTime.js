@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./Footer";
+import Spinner from "./Spinner";
 
 export default function DateAndTime() {
     const { idMovie } = useParams();
@@ -30,6 +31,7 @@ export default function DateAndTime() {
     return (
         <Div>
             <Title>Selecione o horário</Title>
+            {!!allShowtimes.length ? null : <Spinner />}
             {allShowtimes.map((date) => {
                 return (
                     <div key={date.id}>

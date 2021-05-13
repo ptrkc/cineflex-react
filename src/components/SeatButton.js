@@ -35,7 +35,7 @@ const SeatBtn = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-
+    transition: 0.2s;
     &.selected {
         background: #8dd7cf;
         border: 1px solid #45bdb0;

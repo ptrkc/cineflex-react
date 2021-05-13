@@ -6,13 +6,17 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./Footer";
+import Spinner from "./Spinner";
 
 export default function Seats() {
     const { idShowtime } = useParams();
     const [allSeats, setAllSeats] = useState([]);
-    const [footerData, setFooterData] = useState([]);
     const [bookRequest, setBookRequest] = useState([]);
     const [personalInfo, setPersonalInfo] = useState({ name: "", cpf: "" });
+    const [footerData, setFooterData] = useState({
+        small: true,
+        infoLoaded: false,
+    });
 
     useEffect(() => {
         const seatsRequest = axios.get(
@@ -22,12 +26,13 @@ export default function Seats() {
             response.data.seats.forEach((seat) => (seat.selected = false));
             setAllSeats([...response.data.seats]);
             setFooterData({
+                ...footerData,
                 id: response.data.movie.id,
                 title: response.data.movie.title,
                 posterURL: response.data.movie.posterURL,
                 weekday: response.data.day.weekday,
                 name: response.data.name,
-                small: true,
+                infoLoaded: true,
             });
             setBookRequest({ ids: [], name: "", cpf: "" });
         });
@@ -81,6 +86,7 @@ export default function Seats() {
     return (
         <Div>
             <Title>Selecione o(s) assento(s)</Title>
+            {!!allSeats.length ? null : <Spinner />}
             {createRows().map((row) => (
                 <SeatsList key={row.id}>
                     {row.seats.map((seat) => (
@@ -92,7 +98,7 @@ export default function Seats() {
                     ))}
                 </SeatsList>
             ))}
-            <Guide />
+            {!!allSeats.length ? <Guide /> : null}
             <InfoInputs personalInfo={personalInfo} updateInfo={updateInfo} />
             <Button onClick={bookSeats}>Reservar assento(s)</Button>
             <Footer movie={footerData} />

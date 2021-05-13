@@ -2,10 +2,10 @@ import axios from "axios";
 import styled from "styled-components";
 import Movie from "./Movie";
 import { useState, useEffect } from "react";
+import Spinner from "./Spinner";
 
 export default function Movies() {
     const [movies, setMovies] = useState([]);
-
     useEffect(() => {
         const moviesRequest = axios.get(
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies"
@@ -19,6 +19,7 @@ export default function Movies() {
         <>
             <Title>Selecione o filme</Title>
             <MoviesList>
+                {!!movies.length ? null : <Spinner />}
                 {movies.map((movie) => {
                     return <Movie key={movie.id} movie={movie} />;
                 })}
