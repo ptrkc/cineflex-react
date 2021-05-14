@@ -1,20 +1,41 @@
 import styled from "styled-components";
 export default function InfoInputs(props) {
-    const updateInfo = props.updateInfo;
-    const personalInfo = props.personalInfo;
+    const key = props.id;
+    const [ticketsToBuy, setTicketsToBuy] = props.states;
+
+    function updateInfo(value, info) {
+        console.log("entered updateinfo");
+        console.log([...ticketsToBuy.compradores]);
+        const newArr = [...ticketsToBuy.compradores];
+        newArr.find((c) => c.idAssento === key)[info] = value;
+        console.log({
+            ids: [...ticketsToBuy.ids],
+            compradores: [...newArr],
+        });
+        setTicketsToBuy({
+            ids: [...ticketsToBuy.ids],
+            compradores: [...newArr],
+        });
+    }
     return (
         <InputsStyle>
-            <p>Nome do comprador:</p>
+            <p>Nome do espectador:</p>
             <input
                 type="text"
-                value={personalInfo.name}
-                onChange={(e) => updateInfo(e.target.value, "name")}
+                value={
+                    ticketsToBuy.compradores.find((c) => c.idAssento === key)
+                        .key
+                }
+                onChange={(e) => updateInfo(e.target.value, "nome")}
                 placeholder="Digite seu nome..."
             ></input>
-            <p>CPF do comprador:</p>
+            <p>CPF do espectador:</p>
             <input
                 type="number"
-                value={personalInfo.cpf}
+                value={
+                    ticketsToBuy.compradores.find((c) => c.idAssento === key)
+                        .key
+                }
                 onChange={(e) => updateInfo(e.target.value, "cpf")}
                 placeholder="Digite seu CPF..."
             ></input>

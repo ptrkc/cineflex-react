@@ -11,7 +11,6 @@ export default function Seats(props) {
     const { idShowtime } = useParams();
     const [allSeats, setAllSeats] = useState([]);
     const [bookRequest, setBookRequest] = useState([]);
-    const [personalInfo, setPersonalInfo] = useState({ name: "", cpf: "" });
     const [footerData, setFooterData, ticketsToBuy, setTicketsToBuy] =
         props.states;
 
@@ -49,19 +48,13 @@ export default function Seats(props) {
         const idToChange = parseInt(name);
         if (!seatToToggle.selected) {
             seatToToggle.selected = true;
-            console.log({
-                ids: [...ticketsToBuy.ids, idToChange],
-                compradores: [
-                    ...ticketsToBuy.compradores,
-                    { idAssento: idToChange, nome: "", cpf: "" },
-                ],
-            });
+            const newArr = [
+                ...ticketsToBuy.compradores,
+                { idAssento: idToChange, nome: "", cpf: "" },
+            ];
             setTicketsToBuy({
                 ids: [...ticketsToBuy.ids, idToChange],
-                compradores: [
-                    ...ticketsToBuy.compradores,
-                    { idAssento: idToChange, nome: "", cpf: "" },
-                ],
+                compradores: [...newArr],
             });
             //renderizar campos de input utilizando id
         } else {
@@ -105,10 +98,6 @@ export default function Seats(props) {
             </GuideStyle>
         );
     }
-    function updateInfo(newValue, info) {
-        console.log({ ...personalInfo, [info]: newValue });
-        setPersonalInfo({ ...personalInfo, [info]: newValue });
-    }
 
     function bookSeats() {}
 
@@ -128,17 +117,16 @@ export default function Seats(props) {
                 </SeatsList>
             ))}
             {!!allSeats.length ? <Guide /> : null}
-            {ticketsToBuy.ids.map((id) => {
-                console.log("asdasda");
+            {ticketsToBuy.compradores.map((c) => {
+                console.log(c.idAssento);
                 return (
                     <InfoInputs
-                        key={id}
-                        personalInfo={personalInfo}
-                        updateInfo={updateInfo}
+                        key={c.idAssento}
+                        id={c.idAssento}
+                        states={[ticketsToBuy, setTicketsToBuy]}
                     />
                 );
             })}
-            {/* <InfoInputs personalInfo={personalInfo} updateInfo={updateInfo} /> */}
             <Button onClick={bookSeats}>Reservar assento(s)</Button>
         </Div>
     );

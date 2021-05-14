@@ -28,7 +28,14 @@ export default function App() {
                     <Movies states={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/sessoes/:idMovie">
-                    <DateAndTime states={[footerData, setFooterData]} />
+                    <DateAndTime
+                        states={[
+                            footerData,
+                            setFooterData,
+                            ticketsToBuy,
+                            setTicketsToBuy,
+                        ]}
+                    />
                 </Route>
                 <Route path="/assentos/:idShowtime">
                     <Seats

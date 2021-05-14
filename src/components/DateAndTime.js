@@ -8,7 +8,8 @@ import Spinner from "./Spinner";
 export default function DateAndTime(props) {
     const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
-    const [footerData, setFooterData] = props.states;
+    const [footerData, setFooterData, ticketsToBuy, setTicketsToBuy] =
+        props.states;
 
     useEffect(() => {
         const showtimesRequest = axios.get(
@@ -23,6 +24,10 @@ export default function DateAndTime(props) {
                 posterURL: response.data.posterURL,
                 infoLoaded: true,
             });
+        });
+        setTicketsToBuy({
+            ids: [], // 1,2,3
+            compradores: [], // { idAssento: 1, nome: "Fulano", cpf: "12345678900" },
         });
     }, []);
     return (
