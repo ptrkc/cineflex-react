@@ -23,13 +23,6 @@ export default function App() {
     const [darkMode, setDarkMode] = useState(
         localStorage.getItem("theme") === "dark" ? true : false
     );
-    console.clear();
-    console.log("footerData");
-    console.log(footerData);
-    console.log("ticketsToBuy");
-    console.log(ticketsToBuy);
-    console.log("allSeats");
-    console.log(allSeats);
 
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

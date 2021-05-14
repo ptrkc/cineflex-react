@@ -47,16 +47,7 @@ export default function Success(props) {
 
     function backHome() {
         history.push("/");
-        console.clear();
-        console.log("footerData");
-        console.log(footerData);
-        console.log("ticketsToBuy");
-        console.log(ticketsToBuy);
-        console.log("allSeats");
-        console.log(allSeats);
     }
-
-    console.log(footerData);
 
     if (!success) {
         return (

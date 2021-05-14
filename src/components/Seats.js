@@ -132,7 +132,7 @@ export default function Seats(props) {
     return (
         <Div>
             <Title>Selecione o(s) assento(s)</Title>
-            {!!allSeats.length ? null : <Spinner />}
+            {!!allSeats.length ? <Screen>TELA</Screen> : <Spinner />}
             {createRows().map((row) => (
                 <SeatsList key={row.id}>
                     {row.seats.map((seat) => (
@@ -181,6 +181,18 @@ const Title = styled.p`
     color: ${(props) => props.theme.textColor};
     height: 66px;
     margin-bottom: 32px;
+`;
+const Screen = styled.div`
+    max-width: 600px;
+    min-width: 265px;
+    height: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${(props) => props.theme.bgColor};
+    background-color: ${(props) => props.theme.textColor};
+    margin-bottom: 10px;
 `;
 const SeatsList = styled.ul`
     display: flex;
