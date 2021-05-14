@@ -18,38 +18,55 @@ export default function InfoInputs(props) {
         });
     }
     return (
-        <InputsStyle>
-            <p>Nome do espectador:</p>
-            <input
-                type="text"
-                value={
-                    ticketsToBuy.compradores.find((c) => c.idAssento === key)
-                        .key
-                }
-                onChange={(e) => updateInfo(e.target.value, "nome")}
-                placeholder="Digite seu nome..."
-            ></input>
-            <p>CPF do espectador:</p>
-            <input
-                type="number"
-                value={
-                    ticketsToBuy.compradores.find((c) => c.idAssento === key)
-                        .key
-                }
-                onChange={(e) => updateInfo(e.target.value, "cpf")}
-                placeholder="Digite seu CPF..."
-            ></input>
-        </InputsStyle>
+        <>
+            <Title>ASSENTO {key}</Title>
+            <InputsStyle>
+                <p>Nome do espectador:</p>
+                <input
+                    type="text"
+                    value={
+                        ticketsToBuy.compradores.find(
+                            (c) => c.idAssento === key
+                        ).key
+                    }
+                    onChange={(e) => updateInfo(e.target.value, "nome")}
+                    placeholder="Digite o nome..."
+                ></input>
+                <p>CPF do espectador:</p>
+                <input
+                    type="number"
+                    value={
+                        ticketsToBuy.compradores.find(
+                            (c) => c.idAssento === key
+                        ).key
+                    }
+                    onChange={(e) => updateInfo(e.target.value, "cpf")}
+                    placeholder="Digite o CPF..."
+                ></input>
+            </InputsStyle>
+        </>
     );
 }
 
+const Title = styled.span`
+    font-family: ${(props) => props.theme.logoFont};
+    color: ${(props) => props.theme.textColor};
+    font-weight: bold;
+    display: block;
+    max-width: 600px;
+    min-width: 265px;
+    margin: 0px auto;
+`;
 const InputsStyle = styled.div`
     margin: 0px auto 40px;
     max-width: 600px;
     min-width: 265px;
     font-size: 18px;
     color: ${(props) => props.theme.textColor};
-    margin-bottom: 56px;
+    margin-bottom: 20px;
+    border: 3px solid ${(props) => props.theme.textColor};
+    border-radius: 3px;
+    padding: 5px;
 
     p {
         margin-bottom: 5px;
@@ -64,7 +81,7 @@ const InputsStyle = styled.div`
         font-size: 18px;
 
         &::placeholder {
-            font-family: Roboto;
+            font-family: ${(props) => props.theme.fontFamily};
             font-style: italic;
             color: #afafaf;
         }

@@ -1,21 +1,29 @@
 const darkTheme = {
-    bgColor: "#333333",
-    textColor: "#f7f7f7",
-    accentColor: "#220061",
-    fixedBarColor: "#0979c5",
-    selectedColor: "#285aff",
-    availableColor: "#428b20",
-    unavailableColor: "#ff7070",
+    type: "dark",
+    bgColor: "#000000",
+    textColor: "#e0e0e0",
+    accentColor: "#e0e0e0",
+    fixedBarColor: "#292929",
+    selectedColor: "#fff238",
+    availableColor: "#e4e4e4",
+    unavailableColor: "#555555",
+    fontFamily: "'Roboto Mono', monospace;",
+    logoFont: "'Roboto Mono', monospace;",
+    logoColor: "#e0e0e0",
 };
 
 const lightTheme = {
+    type: "light",
     bgColor: "#ffffff",
-    textColor: "#293845",
-    accentColor: "#E8833A",
-    fixedBarColor: "#c3cfd9",
-    selectedColor: "#8dd7cf",
-    availableColor: "#c3cfd9",
-    unavailableColor: "#c3cfd9",
+    textColor: "#000000",
+    accentColor: "#ffffff",
+    fixedBarColor: "#000000",
+    selectedColor: "#fff238",
+    availableColor: "#e7e7e7",
+    unavailableColor: "#5f5f5f",
+    fontFamily: "'Roboto Mono', monospace;",
+    logoFont: "'Roboto Mono', monospace;",
+    logoColor: "#ffffff",
 };
 
 export { darkTheme, lightTheme };

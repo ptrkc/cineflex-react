@@ -35,7 +35,9 @@ const SpinnerStyle = styled.div`
         top: 10px;
         left: 10px;
         border-radius: 50%;
-        box-shadow: 0 6.3px 0 0 ${(props) => props.theme.accentColor};
+        box-shadow: 0 6.3px 0 0
+            ${(props) =>
+                props.invert ? props.theme.accentColor : props.theme.textColor};
         transform-origin: 40px 43.15px;
         box-sizing: content-box;
     }

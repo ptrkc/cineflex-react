@@ -5,20 +5,30 @@ import Button from "./Button";
 export default function Header(props) {
     const history = useHistory();
     const location = useLocation();
+    const [darkMode, setDarkMode] = props.states;
 
-    function BackButton() {
-        return (
-            <Button size="small" onClick={() => history.goBack()}>
-                <BackArrow />
-                Voltar
-            </Button>
-        );
+    function toggleTheme() {
+        console.log(darkMode);
+        if (darkMode) {
+            setDarkMode(false);
+        } else {
+            setDarkMode(true);
+        }
     }
-
+    const isAtHome = location.pathname !== "/";
     return (
         <StyledHeader>
-            {location.pathname !== "/" ? <BackButton /> : null}
-            CINEFLEX
+            <Button
+                className={isAtHome ? null : "hidden"}
+                size="small"
+                onClick={isAtHome ? () => history.goBack() : undefined}
+            >
+                <BackArrow />
+            </Button>
+            <span>CINEFLEX</span>
+            <Button size="small" onClick={toggleTheme}>
+                {darkMode ? "☀️" : "🌑"}
+            </Button>
         </StyledHeader>
     );
 }
@@ -26,24 +36,34 @@ export default function Header(props) {
 const StyledHeader = styled.div`
     position: fixed;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 67px;
     left: 0px;
     right: 0px;
     top: 0px;
+    padding: 0px 8px;
     background: ${(props) => props.theme.fixedBarColor};
-    color: ${(props) => props.theme.accentColor};
-    font-size: 34px;
+    color: ${(props) => props.theme.logoColor};
     z-index: 1;
+    transition: 0.5s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    span {
+        font-family: ${(props) => props.theme.logoFont};
+        font-size: 44px;
+        font-weight: bold;
+    }
+    .hidden {
+        opacity: 0;
+    }
     button {
-        position: absolute;
-        left: 5px;
+        width: 40px;
+        border: none;
     }
 `;
 
 const BackArrow = styled.div`
-    border: solid #ffffff;
+    border: solid ${(props) => props.theme.fontColor};
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 4px;

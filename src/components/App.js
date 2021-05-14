@@ -18,13 +18,14 @@ export default function App() {
         ids: [],
         compradores: [],
     });
+    const [darkMode, setDarkMode] = useState(true);
 
     return (
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <BrowserRouter>
                 <ResetCSS />
                 <GlobalStyle />
-                <Header />
+                <Header states={[darkMode, setDarkMode]} />
                 <Switch>
                     <Route path="/" exact>
                         <Movies states={[footerData, setFooterData]} />

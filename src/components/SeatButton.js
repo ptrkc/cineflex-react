@@ -24,14 +24,15 @@ export default function SeatButton(props) {
         </>
     );
 }
-
 const SeatBtn = styled.li`
     background: ${(props) =>
         props.available
             ? props.theme.availableColor
             : props.theme.unavailableColor};
-    border: 1px solid ${(props) => (props.available ? "#808f9d" : "#F7C52B")};
-    border-radius: 50px;
+    border: ${(props) =>
+        props.theme.type === "dark" ? "none" : `1px solid black`};
+    border-radius: 3px;
+    box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.2);
     width: 26px;
     height: 26px;
     font-size: 11px;
@@ -41,7 +42,6 @@ const SeatBtn = styled.li`
     transition: 0.2s;
     &.selected {
         background: ${(props) => props.theme.selectedColor};
-        border: 1px solid #45bdb0;
     }
 
     @media (min-width: 440px) {

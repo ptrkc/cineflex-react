@@ -12,7 +12,7 @@ export default function Movie(props) {
     } else {
         return (
             <MovieStyle as={Link} to={`/sessoes/${id}`}>
-                <Spinner />
+                <Spinner invert={true} />
                 <img src={posterURL} alt={title} />
             </MovieStyle>
         );
@@ -29,7 +29,7 @@ const MovieStyle = styled.li`
     box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     margin: 5px 5px;
-    background: #ffffff;
+    background: ${(props) => (props.small ? "#ffffff" : props.theme.textColor)};
     flex-shrink: 0;
     img {
         width: 100%;

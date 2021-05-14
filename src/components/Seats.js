@@ -185,15 +185,13 @@ const GuideStyle = styled.div`
     margin: 0px auto 40px;
     max-width: 600px;
     min-width: 265px;
-
+    color: ${(props) => props.theme.textColor};
     div {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: #4e5a65;
         font-size: 13px;
-
         li {
             margin-bottom: 10px;
         }

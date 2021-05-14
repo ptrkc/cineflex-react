@@ -23,8 +23,11 @@ const StyledFooter = styled.div`
     left: 0;
     bottom: ${(props) => (!props.infoLoaded ? "-117px" : "0")};
     background: ${(props) => props.theme.fixedBarColor};
+    font-size: 20px;
     border-top: 1px solid #9eadba;
-    transition: 1s;
+    transition: 0.5s;
+    box-shadow: ${(props) =>
+        !props.infoLoaded ? "none" : "0px -4px 10px rgba(0, 0, 0, 0.5)"};
 
     & > div {
         max-width: 600px;
@@ -36,10 +39,9 @@ const StyledFooter = styled.div`
     }
     .showtime-info {
         flex-direction: column;
-        font-size: 26px;
         line-height: 30px;
         display: flex;
-        color: ${(props) => props.theme.textColor};
+        color: ${(props) => props.theme.accentColor};
         margin-left: 14px;
     }
 `;

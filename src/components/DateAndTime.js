@@ -22,6 +22,8 @@ export default function DateAndTime(props) {
                 id: response.data.id,
                 title: response.data.title,
                 posterURL: response.data.posterURL,
+                weekday: null,
+                name: null,
                 infoLoaded: true,
             });
         });
@@ -33,7 +35,7 @@ export default function DateAndTime(props) {
     return (
         <Div>
             <Title>Selecione o horário</Title>
-            {!!allShowtimes.length ? null : <Spinner />}
+            {!!allShowtimes.length ? null : <Spinner invert={true} />}
             {allShowtimes.map((date) => {
                 return (
                     <div key={date.id}>
@@ -64,8 +66,8 @@ const TimesList = styled.div`
     flex-wrap: wrap;
     margin: 22px 0px;
 
-    button {
-        margin: 4px;
+    a {
+        margin: 0px 8px 8px 0px;
     }
 `;
 const Title = styled.p`
@@ -73,12 +75,13 @@ const Title = styled.p`
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    text-align: center;
     color: ${(props) => props.theme.textColor};
     height: 66px;
     margin-bottom: 40px;
 `;
 const Day = styled.p`
-    font-size: 20px;
+    font-size: 18px;
     color: ${(props) => props.theme.textColor};
     margin-bottom: 32px;
 `;
