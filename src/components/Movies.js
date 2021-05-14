@@ -6,9 +6,22 @@ import Spinner from "./Spinner";
 
 export default function Movies(props) {
     const [movies, setMovies] = useState([]);
-    const [footerData, setFooterData] = props.states;
+    const [
+        footerData,
+        setFooterData,
+        ticketsToBuy,
+        setTicketsToBuy,
+        allSeats,
+        setAllSeats,
+    ] = props.states;
 
     useEffect(() => {
+        setTicketsToBuy({
+            ids: [],
+            compradores: [],
+        });
+        setAllSeats([]);
+
         const moviesRequest = axios.get(
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies"
         );

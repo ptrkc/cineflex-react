@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import Movies from "./Movies";
 import DateAndTime from "./DateAndTime";
@@ -21,6 +21,13 @@ export default function App() {
     const [allSeats, setAllSeats] = useState([]);
 
     const [darkMode, setDarkMode] = useState(true);
+    console.clear();
+    console.log("footerData");
+    console.log(footerData);
+    console.log("ticketsToBuy");
+    console.log(ticketsToBuy);
+    console.log("allSeats");
+    console.log(allSeats);
 
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -30,7 +37,16 @@ export default function App() {
                 <Header states={[darkMode, setDarkMode]} />
                 <Switch>
                     <Route path="/" exact>
-                        <Movies states={[footerData, setFooterData]} />
+                        <Movies
+                            states={[
+                                footerData,
+                                setFooterData,
+                                ticketsToBuy,
+                                setTicketsToBuy,
+                                allSeats,
+                                setAllSeats,
+                            ]}
+                        />
                     </Route>
                     <Route path="/sessoes/:idMovie">
                         <DateAndTime
@@ -39,6 +55,8 @@ export default function App() {
                                 setFooterData,
                                 ticketsToBuy,
                                 setTicketsToBuy,
+                                allSeats,
+                                setAllSeats,
                             ]}
                         />
                     </Route>

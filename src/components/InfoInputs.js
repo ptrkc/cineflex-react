@@ -1,17 +1,16 @@
 import styled from "styled-components";
 export default function InfoInputs(props) {
-    const key = props.id;
+    const id = props.id;
+    const seatNumber = props.seatNumber;
     const [ticketsToBuy, setTicketsToBuy] = props.states;
 
     function updateInfo(value, info) {
-        console.log("entered updateinfo");
-        console.log([...ticketsToBuy.compradores]);
         const newArr = [...ticketsToBuy.compradores];
         if (info === "cpf") {
             let onlyNumbers = value.replace(/\D/g, "").slice(0, 11);
-            newArr.find((c) => c.idAssento === key).cpf = onlyNumbers;
+            newArr.find((c) => c.idAssento === id).cpf = onlyNumbers;
         } else {
-            newArr.find((c) => c.idAssento === key).nome = value;
+            newArr.find((c) => c.idAssento === id).nome = value;
         }
         setTicketsToBuy({
             ids: [...ticketsToBuy.ids],
@@ -20,15 +19,14 @@ export default function InfoInputs(props) {
     }
     return (
         <>
-            <Title>ASSENTO {key}</Title>
+            <Title>ASSENTO {seatNumber}</Title>
             <InputsStyle>
                 <p>Nome do espectador:</p>
                 <input
                     type="text"
                     value={
-                        ticketsToBuy.compradores.find(
-                            (c) => c.idAssento === key
-                        ).nome
+                        ticketsToBuy.compradores.find((c) => c.idAssento === id)
+                            .nome
                     }
                     onChange={(e) => updateInfo(e.target.value, "nome")}
                     placeholder="Digite o nome..."
@@ -37,9 +35,8 @@ export default function InfoInputs(props) {
                 <input
                     type="text"
                     value={
-                        ticketsToBuy.compradores.find(
-                            (c) => c.idAssento === key
-                        ).cpf
+                        ticketsToBuy.compradores.find((c) => c.idAssento === id)
+                            .cpf
                     }
                     onChange={(e) => updateInfo(e.target.value, "cpf")}
                     placeholder="Digite o CPF..."

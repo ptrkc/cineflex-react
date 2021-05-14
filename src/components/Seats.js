@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import SeatButton from "./SeatButton";
+import SeatsGuide from "./SeatsGuide";
 import Button from "./Button";
 import InfoInputs from "./InfoInputs";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "./Spinner";
 
 export default function Seats(props) {
     const { idShowtime } = useParams();
-    const [bookRequest, setBookRequest] = useState([]);
     const [
         footerData,
         setFooterData,
@@ -21,6 +21,10 @@ export default function Seats(props) {
     const history = useHistory();
 
     useEffect(() => {
+        setTicketsToBuy({
+            ids: [],
+            compradores: [],
+        });
         const seatsRequest = axios.get(
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idShowtime}/seats`
         );
@@ -29,7 +33,6 @@ export default function Seats(props) {
                 return { ...seat, selected: false };
             });
             setAllSeats([...seatsArray]);
-            console.log([...seatsArray]);
             setFooterData({
                 ...footerData,
                 id: response.data.movie.id,
@@ -40,7 +43,6 @@ export default function Seats(props) {
                 name: response.data.name,
                 infoLoaded: true,
             });
-            setBookRequest({ ids: [], name: "", cpf: "" });
         });
     }, []);
 
@@ -86,14 +88,6 @@ export default function Seats(props) {
                 return;
             }
             seatToToggle.selected = false;
-            console.log({
-                ids: [...ticketsToBuy.ids.filter((id) => id !== idToChange)],
-                compradores: [
-                    ...ticketsToBuy.compradores.filter(
-                        (c) => c.idAssento !== idToChange
-                    ),
-                ],
-            });
             setTicketsToBuy({
                 ids: [...ticketsToBuy.ids.filter((id) => id !== idToChange)],
                 compradores: [
@@ -104,26 +98,6 @@ export default function Seats(props) {
             });
         }
         setAllSeats([...allSeats]);
-    }
-    function Guide() {
-        return (
-            <GuideStyle>
-                <div>
-                    <SeatButton seat={{ isAvailable: true, selected: true }} />
-                    Selecionado
-                </div>
-                <div>
-                    <SeatButton seat={{ isAvailable: true, selected: false }} />
-                    Disponível
-                </div>
-                <div>
-                    <SeatButton
-                        seat={{ isAvailable: false, selected: false }}
-                    />
-                    Indisponível
-                </div>
-            </GuideStyle>
-        );
     }
 
     function bookSeats() {
@@ -163,12 +137,14 @@ export default function Seats(props) {
                     ))}
                 </SeatsList>
             ))}
-            {!!allSeats.length ? <Guide /> : null}
+            {!!allSeats.length ? <SeatsGuide /> : null}
             {ticketsToBuy.compradores.map((c) => {
-                console.log(c.idAssento);
                 return (
                     <InfoInputs
                         key={allSeats.find((s) => s.id === c.idAssento).name}
+                        seatNumber={
+                            allSeats.find((s) => s.id === c.idAssento).name
+                        }
                         id={c.idAssento}
                         states={[ticketsToBuy, setTicketsToBuy]}
                     />
@@ -207,24 +183,4 @@ const SeatsList = styled.ul`
     margin: 0px auto 18px;
     max-width: 600px;
     min-width: 265px;
-`;
-const GuideStyle = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0px auto 40px;
-    max-width: 600px;
-    min-width: 265px;
-    color: ${(props) => props.theme.textColor};
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 13px;
-        li {
-            margin-bottom: 10px;
-        }
-    }
 `;
