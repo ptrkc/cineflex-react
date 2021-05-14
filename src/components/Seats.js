@@ -197,7 +197,7 @@ const Screen = styled.div`
     align-items: center;
     color: ${(props) => props.theme.bgColor};
     background-color: ${(props) => props.theme.textColor};
-    margin-bottom: 10px;
+    margin: 0px auto 10px;
 `;
 const SeatsList = styled.ul`
     display: flex;
