@@ -4,7 +4,7 @@ import SeatsGuide from "./SeatsGuide";
 import Button from "./Button";
 import InfoInputs from "./InfoInputs";
 import { useHistory, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import Spinner from "./Spinner";
 

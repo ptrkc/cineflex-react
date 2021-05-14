@@ -36,9 +36,7 @@ export default function App() {
                             states={[
                                 footerData,
                                 setFooterData,
-                                ticketsToBuy,
                                 setTicketsToBuy,
-                                allSeats,
                                 setAllSeats,
                             ]}
                         />
@@ -48,9 +46,7 @@ export default function App() {
                             states={[
                                 footerData,
                                 setFooterData,
-                                ticketsToBuy,
                                 setTicketsToBuy,
-                                allSeats,
                                 setAllSeats,
                             ]}
                         />
@@ -73,9 +69,7 @@ export default function App() {
                                 footerData,
                                 setFooterData,
                                 ticketsToBuy,
-                                setTicketsToBuy,
                                 allSeats,
-                                setAllSeats,
                             ]}
                         />
                     </Route>

@@ -6,14 +6,7 @@ import { useHistory } from "react-router";
 import Button from "./Button";
 
 export default function Success(props) {
-    const [
-        footerData,
-        setFooterData,
-        ticketsToBuy,
-        setTicketsToBuy,
-        allSeats,
-        setAllSeats,
-    ] = props.states;
+    const [footerData, setFooterData, ticketsToBuy, allSeats] = props.states;
     const [success, setSuccess] = useState(false);
     const history = useHistory();
     useEffect(() => {

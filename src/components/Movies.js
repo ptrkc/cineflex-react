@@ -6,14 +6,8 @@ import Spinner from "./Spinner";
 
 export default function Movies(props) {
     const [movies, setMovies] = useState([]);
-    const [
-        footerData,
-        setFooterData,
-        ticketsToBuy,
-        setTicketsToBuy,
-        allSeats,
-        setAllSeats,
-    ] = props.states;
+    const [footerData, setFooterData, setTicketsToBuy, setAllSeats] =
+        props.states;
 
     useEffect(() => {
         setTicketsToBuy({
