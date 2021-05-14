@@ -76,6 +76,7 @@ const Title = styled.p`
     align-items: flex-end;
     justify-content: center;
     text-align: center;
+    font-weight: bold;
     color: ${(props) => props.theme.textColor};
     height: 66px;
     margin-bottom: 40px;

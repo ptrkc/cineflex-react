@@ -49,6 +49,7 @@ const Title = styled.p`
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    font-weight: bold;
     color: ${(props) => props.theme.textColor};
     height: 66px;
     margin-bottom: 32px;

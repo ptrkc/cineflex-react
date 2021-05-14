@@ -44,6 +44,20 @@ export default function Seats(props) {
         }
         return rowsArrays;
     }
+
+    function areYouSure(idToChange) {
+        const seat = ticketsToBuy.compradores.find(
+            (c) => c.idAssento === idToChange
+        );
+        if (!!seat.cpf || !!seat.nome) {
+            const answer = window.confirm(
+                `O assento ${idToChange} já possui dados preenchidos. Tem certeza que deseja removê-lo?`
+            );
+            return answer;
+        } else {
+            return true;
+        }
+    }
     function toggleSelection(name) {
         const seatToToggle = allSeats.find((seat) => seat.name === name);
         const idToChange = parseInt(name);
@@ -59,12 +73,15 @@ export default function Seats(props) {
             });
             //renderizar campos de input utilizando id
         } else {
+            if (!areYouSure(idToChange)) {
+                return;
+            }
             seatToToggle.selected = false;
             console.log({
                 ids: [...ticketsToBuy.ids.filter((id) => id !== idToChange)],
                 compradores: [
                     ...ticketsToBuy.compradores.filter(
-                        (comprador) => comprador.idAssento !== idToChange
+                        (c) => c.idAssento !== idToChange
                     ),
                 ],
             });
@@ -72,7 +89,7 @@ export default function Seats(props) {
                 ids: [...ticketsToBuy.ids.filter((id) => id !== idToChange)],
                 compradores: [
                     ...ticketsToBuy.compradores.filter(
-                        (comprador) => comprador.idAssento !== idToChange
+                        (c) => c.idAssento !== idToChange
                     ),
                 ],
             });
@@ -101,20 +118,20 @@ export default function Seats(props) {
     }
 
     function bookSeats() {
-        let allOK = true;
+        let errors = [];
         if (ticketsToBuy.compradores.length > 0) {
             ticketsToBuy.compradores.forEach((c) => {
                 if (c.cpf == false || c.nome == false) {
-                    alert(`completa td pfvr o assento ${c.idAssento}`);
-                    allOK = false;
+                    errors.push(" " + c.idAssento);
                 }
             });
+            if (!errors.length) {
+                history.push("/sucesso");
+            } else {
+                alert("Preencha os dados dos assento(s):" + errors.toString());
+            }
         } else {
-            alert("Selecione algum assento antes néah");
-            allOK = false;
-        }
-        if (allOK) {
-            history.push("/sucesso");
+            alert("Por favor, escolha algum assento.");
         }
     }
 
@@ -163,6 +180,7 @@ const Title = styled.p`
     display: flex;
     text-align: center;
     align-items: flex-end;
+    font-weight: bold;
     justify-content: center;
     color: ${(props) => props.theme.textColor};
     height: 66px;

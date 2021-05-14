@@ -34,7 +34,7 @@ export default function InfoInputs(props) {
                 ></input>
                 <p>CPF do espectador:</p>
                 <input
-                    type="number"
+                    type="text"
                     value={
                         ticketsToBuy.compradores.find(
                             (c) => c.idAssento === key
