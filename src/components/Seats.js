@@ -12,7 +12,8 @@ export default function Seats(props) {
     const [allSeats, setAllSeats] = useState([]);
     const [bookRequest, setBookRequest] = useState([]);
     const [personalInfo, setPersonalInfo] = useState({ name: "", cpf: "" });
-    const [footerData, setFooterData] = props.states;
+    const [footerData, setFooterData, ticketsToBuy, setTicketsToBuy] =
+        props.states;
 
     useEffect(() => {
         const seatsRequest = axios.get(
@@ -45,10 +46,42 @@ export default function Seats(props) {
     }
     function toggleSelection(name) {
         const seatToToggle = allSeats.find((seat) => seat.name === name);
+        const idToChange = parseInt(name);
         if (!seatToToggle.selected) {
             seatToToggle.selected = true;
+            console.log({
+                ids: [...ticketsToBuy.ids, idToChange],
+                compradores: [
+                    ...ticketsToBuy.compradores,
+                    { idAssento: idToChange, nome: "", cpf: "" },
+                ],
+            });
+            setTicketsToBuy({
+                ids: [...ticketsToBuy.ids, idToChange],
+                compradores: [
+                    ...ticketsToBuy.compradores,
+                    { idAssento: idToChange, nome: "", cpf: "" },
+                ],
+            });
+            //renderizar campos de input utilizando id
         } else {
             seatToToggle.selected = false;
+            console.log({
+                ids: [...ticketsToBuy.ids.filter((id) => id !== idToChange)],
+                compradores: [
+                    ...ticketsToBuy.compradores.filter(
+                        (comprador) => comprador.idAssento !== idToChange
+                    ),
+                ],
+            });
+            setTicketsToBuy({
+                ids: [...ticketsToBuy.ids.filter((id) => id !== idToChange)],
+                compradores: [
+                    ...ticketsToBuy.compradores.filter(
+                        (comprador) => comprador.idAssento !== idToChange
+                    ),
+                ],
+            });
         }
         setAllSeats([...allSeats]);
     }
@@ -95,6 +128,7 @@ export default function Seats(props) {
                 </SeatsList>
             ))}
             {!!allSeats.length ? <Guide /> : null}
+            {/* {ticketsToBuy.} */}
             <InfoInputs personalInfo={personalInfo} updateInfo={updateInfo} />
             <Button onClick={bookSeats}>Reservar assento(s)</Button>
         </Div>

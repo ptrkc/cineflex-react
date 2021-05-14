@@ -5,7 +5,6 @@ import Button from "./Button";
 export default function Header(props) {
     const history = useHistory();
     const location = useLocation();
-    console.log(location.pathname);
 
     function BackButton() {
         return (

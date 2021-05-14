@@ -3,7 +3,6 @@ import Movie from "./Movie";
 
 export default function Footer(props) {
     const { title, weekday, name, infoLoaded } = props.movie;
-    console.log(props);
     return (
         <StyledFooter infoLoaded={infoLoaded}>
             <div>

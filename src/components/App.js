@@ -31,7 +31,14 @@ export default function App() {
                     <DateAndTime states={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/assentos/:idShowtime">
-                    <Seats states={[footerData, setFooterData]} />
+                    <Seats
+                        states={[
+                            footerData,
+                            setFooterData,
+                            ticketsToBuy,
+                            setTicketsToBuy,
+                        ]}
+                    />
                 </Route>
                 <Route path="/sucesso">
                     <Success />
