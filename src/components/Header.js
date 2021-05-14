@@ -8,7 +8,7 @@ export default function Header(props) {
     const [darkMode, setDarkMode] = props.states;
 
     function toggleTheme() {
-        if (localStorage.getItem("theme") === "dark") {
+        if (darkMode) {
             setDarkMode(false);
             localStorage.setItem("theme", "light");
         } else {
