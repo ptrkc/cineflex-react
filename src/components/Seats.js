@@ -12,7 +12,7 @@ export default function Seats(props) {
     const [allSeats, setAllSeats] = useState([]);
     const [bookRequest, setBookRequest] = useState([]);
     const [personalInfo, setPersonalInfo] = useState({ name: "", cpf: "" });
-    const [footerData, setFooterData] = props.footer;
+    const [footerData, setFooterData] = props.states;
 
     useEffect(() => {
         const seatsRequest = axios.get(

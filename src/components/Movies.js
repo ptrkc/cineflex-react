@@ -6,7 +6,7 @@ import Spinner from "./Spinner";
 
 export default function Movies(props) {
     const [movies, setMovies] = useState([]);
-    const [footerData, setFooterData] = props.footer;
+    const [footerData, setFooterData] = props.states;
 
     useEffect(() => {
         const moviesRequest = axios.get(

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
 import Header from "./Header";
 import Movies from "./Movies";
 import DateAndTime from "./DateAndTime";
@@ -13,6 +13,10 @@ export default function App() {
     const [footerData, setFooterData] = useState({
         infoLoaded: false,
     });
+    const [ticketsToBuy, setTicketsToBuy] = useState({
+        ids: [], // 1,2,3
+        compradores: [], // { idAssento: 1, nome: "Fulano", cpf: "12345678900" },
+    });
 
     return (
         <BrowserRouter>
@@ -21,13 +25,13 @@ export default function App() {
             <Header />
             <Switch>
                 <Route path="/" exact>
-                    <Movies footer={[footerData, setFooterData]} />
+                    <Movies states={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/sessoes/:idMovie">
-                    <DateAndTime footer={[footerData, setFooterData]} />
+                    <DateAndTime states={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/assentos/:idShowtime">
-                    <Seats footer={[footerData, setFooterData]} />
+                    <Seats states={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/sucesso">
                     <Success />

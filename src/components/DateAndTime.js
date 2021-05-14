@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 export default function DateAndTime(props) {
     const { idMovie } = useParams();
     const [allShowtimes, setAllShowtimes] = useState([]);
-    const [footerData, setFooterData] = props.footer;
+    const [footerData, setFooterData] = props.states;
 
     useEffect(() => {
         const showtimesRequest = axios.get(
