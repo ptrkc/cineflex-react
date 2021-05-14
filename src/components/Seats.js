@@ -101,24 +101,31 @@ export default function Seats(props) {
     }
 
     function bookSeats() {
-        let errors = [];
-        if (ticketsToBuy.compradores.length > 0) {
+        let notFilled = [];
+        let wrongCPF = false;
+        if (ticketsToBuy.compradores.length < 1) {
+            alert("Por favor, escolha algum assento.");
+        } else {
             ticketsToBuy.compradores.forEach((c) => {
+                const seat = allSeats.find((s) => s.id === c.idAssento).name;
                 if (!!c.cpf === false || !!c.nome === false) {
-                    errors.push(" " + c.idAssento);
+                    notFilled.push(" " + seat);
                 } else if (c.cpf.length < 11) {
-                    alert("O CPF deve conter 11 dígitos.");
-                } // ta disparando o success
+                    wrongCPF = true;
+                }
             });
-            if (!errors.length) {
+            if (!notFilled.length && !wrongCPF) {
                 history.push("/sucesso");
             } else {
-                alert(
-                    "Preencha os dados do(s) assento(s):" + errors.toString()
-                );
+                if (notFilled.length) {
+                    alert(
+                        "Preencha os dados do(s) assento(s):" +
+                            notFilled.toString()
+                    );
+                } else {
+                    alert("O CPF deve conter 11 dígitos.");
+                }
             }
-        } else {
-            alert("Por favor, escolha algum assento.");
         }
     }
 

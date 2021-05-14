@@ -42,7 +42,7 @@ export default function DateAndTime(props) {
     return (
         <Div>
             <Title>Selecione o horário</Title>
-            {!!allShowtimes.length ? null : <Spinner invert={true} />}
+            {!!allShowtimes.length ? null : <Spinner />}
             {allShowtimes.map((date) => {
                 return (
                     <div key={date.id}>
@@ -94,5 +94,8 @@ const Day = styled.p`
     margin-bottom: 32px;
 `;
 const Div = styled.div`
-    margin: 0px 24px 150px;
+    padding: 0px 10px;
+    margin: 0px auto 150px;
+    max-width: 600px;
+    min-width: 265px;
 `;

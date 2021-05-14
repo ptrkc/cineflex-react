@@ -59,7 +59,11 @@ export default function Success(props) {
     console.log(footerData);
 
     if (!success) {
-        return <Spinner />;
+        return (
+            <MarginTop>
+                <Spinner />
+            </MarginTop>
+        );
     } else {
         return (
             <Div>
@@ -106,6 +110,10 @@ export default function Success(props) {
         );
     }
 }
+const MarginTop = styled.div`
+    margin-top: 150px;
+`;
+
 const Div = styled.div`
     margin: 0px 15px;
     button {

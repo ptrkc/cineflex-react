@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Spinner() {
+export default function Spinner(props) {
     return (
-        <SpinnerStyle>
+        <SpinnerStyle invert={props.invert}>
             <div className="spinner-middle-div">
                 <div></div>
             </div>
