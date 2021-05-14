@@ -7,11 +7,12 @@ export default function InfoInputs(props) {
         console.log("entered updateinfo");
         console.log([...ticketsToBuy.compradores]);
         const newArr = [...ticketsToBuy.compradores];
-        newArr.find((c) => c.idAssento === key)[info] = value;
-        console.log({
-            ids: [...ticketsToBuy.ids],
-            compradores: [...newArr],
-        });
+        if (info === "cpf") {
+            let onlyNumbers = value.replace(/\D/g, "").slice(0, 11);
+            newArr.find((c) => c.idAssento === key).cpf = onlyNumbers;
+        } else {
+            newArr.find((c) => c.idAssento === key).nome = value;
+        }
         setTicketsToBuy({
             ids: [...ticketsToBuy.ids],
             compradores: [...newArr],
@@ -27,7 +28,7 @@ export default function InfoInputs(props) {
                     value={
                         ticketsToBuy.compradores.find(
                             (c) => c.idAssento === key
-                        ).key
+                        ).nome
                     }
                     onChange={(e) => updateInfo(e.target.value, "nome")}
                     placeholder="Digite o nome..."
@@ -38,7 +39,7 @@ export default function InfoInputs(props) {
                     value={
                         ticketsToBuy.compradores.find(
                             (c) => c.idAssento === key
-                        ).key
+                        ).cpf
                     }
                     onChange={(e) => updateInfo(e.target.value, "cpf")}
                     placeholder="Digite o CPF..."

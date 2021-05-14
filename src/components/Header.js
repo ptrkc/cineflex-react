@@ -8,7 +8,6 @@ export default function Header(props) {
     const [darkMode, setDarkMode] = props.states;
 
     function toggleTheme() {
-        console.log(darkMode);
         if (darkMode) {
             setDarkMode(false);
         } else {
@@ -49,7 +48,7 @@ const StyledHeader = styled.div`
     transition: 0.5s;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     span {
-        font-family: ${(props) => props.theme.logoFont};
+        font-family: ${(props) => props.theme.fontFamily};
         font-size: 44px;
         font-weight: bold;
     }

@@ -8,7 +8,6 @@ const darkTheme = {
     availableColor: "#e4e4e4",
     unavailableColor: "#555555",
     fontFamily: "'Roboto Mono', monospace;",
-    logoFont: "'Roboto Mono', monospace;",
     logoColor: "#e0e0e0",
 };
 
@@ -22,7 +21,6 @@ const lightTheme = {
     availableColor: "#e7e7e7",
     unavailableColor: "#5f5f5f",
     fontFamily: "'Roboto Mono', monospace;",
-    logoFont: "'Roboto Mono', monospace;",
     logoColor: "#ffffff",
 };
 

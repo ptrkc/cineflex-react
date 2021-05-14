@@ -12,7 +12,7 @@ export default function Movie(props) {
     } else {
         return (
             <MovieStyle as={Link} to={`/sessoes/${id}`}>
-                <Spinner invert={true} />
+                <Spinner />
                 <img src={posterURL} alt={title} />
             </MovieStyle>
         );
@@ -31,9 +31,11 @@ const MovieStyle = styled.li`
     margin: 5px 5px;
     background: ${(props) => (props.small ? "#ffffff" : props.theme.textColor)};
     flex-shrink: 0;
+    z-index: 0;
     img {
         width: 100%;
         padding: 0px 8px;
         position: absolute;
+        z-index: 0.2;
     }
 `;

@@ -15,6 +15,7 @@ const SpinnerStyle = styled.div`
     height: 94px;
     overflow: hidden;
     margin: auto;
+    z-index: 0.1;
 
     @keyframes spinner-middle-div {
         0% {
@@ -37,7 +38,7 @@ const SpinnerStyle = styled.div`
         border-radius: 50%;
         box-shadow: 0 6.3px 0 0
             ${(props) =>
-                props.invert ? props.theme.accentColor : props.theme.textColor};
+                props.invert ? props.theme.bgColor : props.theme.textColor};
         transform-origin: 40px 43.15px;
         box-sizing: content-box;
     }

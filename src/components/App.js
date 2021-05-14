@@ -18,6 +18,8 @@ export default function App() {
         ids: [],
         compradores: [],
     });
+    const [allSeats, setAllSeats] = useState([]);
+
     const [darkMode, setDarkMode] = useState(true);
 
     return (
@@ -47,6 +49,8 @@ export default function App() {
                                 setFooterData,
                                 ticketsToBuy,
                                 setTicketsToBuy,
+                                allSeats,
+                                setAllSeats,
                             ]}
                         />
                     </Route>
@@ -57,6 +61,8 @@ export default function App() {
                                 setFooterData,
                                 ticketsToBuy,
                                 setTicketsToBuy,
+                                allSeats,
+                                setAllSeats,
                             ]}
                         />
                     </Route>

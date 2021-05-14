@@ -9,10 +9,15 @@ import Spinner from "./Spinner";
 
 export default function Seats(props) {
     const { idShowtime } = useParams();
-    const [allSeats, setAllSeats] = useState([]);
     const [bookRequest, setBookRequest] = useState([]);
-    const [footerData, setFooterData, ticketsToBuy, setTicketsToBuy] =
-        props.states;
+    const [
+        footerData,
+        setFooterData,
+        ticketsToBuy,
+        setTicketsToBuy,
+        allSeats,
+        setAllSeats,
+    ] = props.states;
     const history = useHistory();
 
     useEffect(() => {
@@ -20,14 +25,18 @@ export default function Seats(props) {
             `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idShowtime}/seats`
         );
         seatsRequest.then((response) => {
-            response.data.seats.forEach((seat) => (seat.selected = false));
-            setAllSeats([...response.data.seats]);
+            const seatsArray = response.data.seats.map((seat) => {
+                return { ...seat, selected: false };
+            });
+            setAllSeats([...seatsArray]);
+            console.log([...seatsArray]);
             setFooterData({
                 ...footerData,
                 id: response.data.movie.id,
                 title: response.data.movie.title,
                 posterURL: response.data.movie.posterURL,
                 weekday: response.data.day.weekday,
+                date: response.data.day.date,
                 name: response.data.name,
                 infoLoaded: true,
             });
@@ -45,13 +54,13 @@ export default function Seats(props) {
         return rowsArrays;
     }
 
-    function areYouSure(idToChange) {
+    function areYouSure(idToChange, nameToChange) {
         const seat = ticketsToBuy.compradores.find(
             (c) => c.idAssento === idToChange
         );
         if (!!seat.cpf || !!seat.nome) {
             const answer = window.confirm(
-                `O assento ${idToChange} já possui dados preenchidos. Tem certeza que deseja removê-lo?`
+                `O assento ${nameToChange} já possui dados preenchidos. Tem certeza que deseja removê-lo?`
             );
             return answer;
         } else {
@@ -60,7 +69,8 @@ export default function Seats(props) {
     }
     function toggleSelection(name) {
         const seatToToggle = allSeats.find((seat) => seat.name === name);
-        const idToChange = parseInt(name);
+        const idToChange = parseInt(seatToToggle.id);
+        const nameToChange = parseInt(seatToToggle.name);
         if (!seatToToggle.selected) {
             seatToToggle.selected = true;
             const newArr = [
@@ -71,9 +81,8 @@ export default function Seats(props) {
                 ids: [...ticketsToBuy.ids, idToChange],
                 compradores: [...newArr],
             });
-            //renderizar campos de input utilizando id
         } else {
-            if (!areYouSure(idToChange)) {
+            if (!areYouSure(idToChange, nameToChange)) {
                 return;
             }
             seatToToggle.selected = false;
@@ -121,14 +130,18 @@ export default function Seats(props) {
         let errors = [];
         if (ticketsToBuy.compradores.length > 0) {
             ticketsToBuy.compradores.forEach((c) => {
-                if (c.cpf == false || c.nome == false) {
+                if (!!c.cpf === false || !!c.nome === false) {
                     errors.push(" " + c.idAssento);
-                }
+                } else if (c.cpf.length < 11) {
+                    alert("O CPF deve conter 11 dígitos.");
+                } // ta disparando o success
             });
             if (!errors.length) {
                 history.push("/sucesso");
             } else {
-                alert("Preencha os dados dos assento(s):" + errors.toString());
+                alert(
+                    "Preencha os dados do(s) assento(s):" + errors.toString()
+                );
             }
         } else {
             alert("Por favor, escolha algum assento.");
