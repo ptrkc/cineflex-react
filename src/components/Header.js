@@ -32,8 +32,8 @@ const StyledHeader = styled.div`
     left: 0px;
     right: 0px;
     top: 0px;
-    background: #c3cfd9;
-    color: #e8833a;
+    background: ${(props) => props.theme.fixedBarColor};
+    color: ${(props) => props.theme.accentColor};
     font-size: 34px;
     z-index: 1;
     button {

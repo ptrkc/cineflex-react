@@ -48,7 +48,7 @@ const InputsStyle = styled.div`
     max-width: 600px;
     min-width: 265px;
     font-size: 18px;
-    color: #293845;
+    color: ${(props) => props.theme.textColor};
     margin-bottom: 56px;
 
     p {

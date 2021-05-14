@@ -22,7 +22,7 @@ const StyledFooter = styled.div`
     right: 0;
     left: 0;
     bottom: ${(props) => (!props.infoLoaded ? "-117px" : "0")};
-    background: #dfe6ed;
+    background: ${(props) => props.theme.fixedBarColor};
     border-top: 1px solid #9eadba;
     transition: 1s;
 
@@ -39,7 +39,7 @@ const StyledFooter = styled.div`
         font-size: 26px;
         line-height: 30px;
         display: flex;
-        color: #293845;
+        color: ${(props) => props.theme.textColor};
         margin-left: 14px;
     }
 `;

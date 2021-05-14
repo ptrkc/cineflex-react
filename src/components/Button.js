@@ -4,7 +4,7 @@ const Button = styled.button`
     width: ${(props) => (props.size ? "83px" : "225px")};
     border: none;
     height: 43px;
-    background: #e8833a;
+    background: ${(props) => props.theme.accentColor};
     border-radius: 3px;
     font-size: 18px;
     color: #ffffff;

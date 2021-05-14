@@ -26,7 +26,10 @@ export default function SeatButton(props) {
 }
 
 const SeatBtn = styled.li`
-    background: ${(props) => (props.available ? "#c3cfd9" : "#FBE192")};
+    background: ${(props) =>
+        props.available
+            ? props.theme.availableColor
+            : props.theme.unavailableColor};
     border: 1px solid ${(props) => (props.available ? "#808f9d" : "#F7C52B")};
     border-radius: 50px;
     width: 26px;
@@ -37,7 +40,7 @@ const SeatBtn = styled.li`
     align-items: center;
     transition: 0.2s;
     &.selected {
-        background: #8dd7cf;
+        background: ${(props) => props.theme.selectedColor};
         border: 1px solid #45bdb0;
     }
 
