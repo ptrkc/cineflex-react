@@ -30,7 +30,6 @@ export default function Success(props) {
         buyTicketsRequest.catch((response) => {
             alert("Parece que algo deu errado. Tente novamente.");
             history.goBack();
-            alert("whoops"); //requestFailed();
         });
         if (footerData.infoLoaded) {
             setFooterData({
@@ -39,11 +38,6 @@ export default function Success(props) {
             });
         }
     }, []);
-
-    // setTicketsToBuy({
-    //     ids: [], // 1,2,3
-    //     compradores: [], // { idAssento: 1, nome: "Fulano", cpf: "12345678900" },
-    // });
 
     function backHome() {
         history.push("/");
