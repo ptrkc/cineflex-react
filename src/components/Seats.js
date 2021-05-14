@@ -32,6 +32,7 @@ export default function Seats(props) {
             const seatsArray = response.data.seats.map((seat) => {
                 return { ...seat, selected: false };
             });
+            const taken = seatsArray.filter((seat) => !seat.isAvailable);
             setAllSeats([...seatsArray]);
             setFooterData({
                 ...footerData,
@@ -43,6 +44,10 @@ export default function Seats(props) {
                 name: response.data.name,
                 infoLoaded: true,
             });
+            if (taken.length === seatsArray.length) {
+                alert("Essa sessão está lotada.");
+                history.goBack();
+            }
         });
     }, []);
 
