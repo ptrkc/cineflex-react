@@ -4,8 +4,10 @@ import Movie from "./Movie";
 import { useState, useEffect } from "react";
 import Spinner from "./Spinner";
 
-export default function Movies() {
+export default function Movies(props) {
     const [movies, setMovies] = useState([]);
+    const [footerData, setFooterData] = props.footer;
+
     useEffect(() => {
         const moviesRequest = axios.get(
             "https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies"
@@ -13,6 +15,12 @@ export default function Movies() {
         moviesRequest.then((response) => {
             setMovies(response.data);
         });
+        if (footerData.infoLoaded) {
+            setFooterData({
+                ...footerData,
+                infoLoaded: false,
+            });
+        }
     }, []);
 
     return (

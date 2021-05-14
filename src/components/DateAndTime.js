@@ -3,7 +3,6 @@ import Button from "./Button";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
 import Spinner from "./Spinner";
 
 export default function DateAndTime(props) {
@@ -25,7 +24,7 @@ export default function DateAndTime(props) {
                 infoLoaded: true,
             });
         });
-    }, [idMovie]);
+    }, []);
     return (
         <Div>
             <Title>Selecione o horário</Title>

@@ -11,7 +11,6 @@ import Footer from "./Footer";
 
 export default function App() {
     const [footerData, setFooterData] = useState({
-        small: true,
         infoLoaded: false,
     });
 
@@ -22,7 +21,7 @@ export default function App() {
             <Header />
             <Switch>
                 <Route path="/" exact>
-                    <Movies />
+                    <Movies footer={[footerData, setFooterData]} />
                 </Route>
                 <Route path="/sessoes/:idMovie">
                     <DateAndTime footer={[footerData, setFooterData]} />

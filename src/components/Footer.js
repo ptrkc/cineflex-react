@@ -7,7 +7,7 @@ export default function Footer(props) {
     return (
         <StyledFooter infoLoaded={infoLoaded}>
             <div>
-                <Movie movie={props.movie} />
+                <Movie movie={{ ...props.movie, small: true }} />
                 <div className="showtime-info">
                     <div>{title}</div>
                     <div>{weekday && name ? `${weekday} - ${name}` : ""}</div>

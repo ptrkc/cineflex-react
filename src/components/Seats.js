@@ -5,7 +5,6 @@ import InfoInputs from "./InfoInputs";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
 import Spinner from "./Spinner";
 
 export default function Seats(props) {
@@ -33,7 +32,7 @@ export default function Seats(props) {
             });
             setBookRequest({ ids: [], name: "", cpf: "" });
         });
-    }, [idShowtime]);
+    }, []);
 
     function createRows() {
         const rows = Math.ceil(allSeats.length / 10);
