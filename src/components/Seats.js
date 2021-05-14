@@ -128,8 +128,17 @@ export default function Seats(props) {
                 </SeatsList>
             ))}
             {!!allSeats.length ? <Guide /> : null}
-            {/* {ticketsToBuy.} */}
-            <InfoInputs personalInfo={personalInfo} updateInfo={updateInfo} />
+            {ticketsToBuy.ids.map((id) => {
+                console.log("asdasda");
+                return (
+                    <InfoInputs
+                        key={id}
+                        personalInfo={personalInfo}
+                        updateInfo={updateInfo}
+                    />
+                );
+            })}
+            {/* <InfoInputs personalInfo={personalInfo} updateInfo={updateInfo} /> */}
             <Button onClick={bookSeats}>Reservar assento(s)</Button>
         </Div>
     );
