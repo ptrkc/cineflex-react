@@ -14,8 +14,8 @@ export default function App() {
         infoLoaded: false,
     });
     const [ticketsToBuy, setTicketsToBuy] = useState({
-        ids: [], // 1,2,3
-        compradores: [], // { idAssento: 1, nome: "Fulano", cpf: "12345678900" },
+        ids: [],
+        compradores: [],
     });
 
     return (
@@ -48,7 +48,14 @@ export default function App() {
                     />
                 </Route>
                 <Route path="/sucesso">
-                    <Success />
+                    <Success
+                        states={[
+                            footerData,
+                            setFooterData,
+                            ticketsToBuy,
+                            setTicketsToBuy,
+                        ]}
+                    />
                 </Route>
             </Switch>
             <Footer movie={footerData} />

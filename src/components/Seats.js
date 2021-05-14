@@ -2,7 +2,7 @@ import styled from "styled-components";
 import SeatButton from "./SeatButton";
 import Button from "./Button";
 import InfoInputs from "./InfoInputs";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "./Spinner";
@@ -13,6 +13,7 @@ export default function Seats(props) {
     const [bookRequest, setBookRequest] = useState([]);
     const [footerData, setFooterData, ticketsToBuy, setTicketsToBuy] =
         props.states;
+    const history = useHistory();
 
     useEffect(() => {
         const seatsRequest = axios.get(
@@ -99,7 +100,23 @@ export default function Seats(props) {
         );
     }
 
-    function bookSeats() {}
+    function bookSeats() {
+        let allOK = true;
+        if (ticketsToBuy.compradores.length > 0) {
+            ticketsToBuy.compradores.forEach((c) => {
+                if (c.cpf == false || c.nome == false) {
+                    alert(`completa td pfvr o assento ${c.idAssento}`);
+                    allOK = false;
+                }
+            });
+        } else {
+            alert("Selecione algum assento antes néah");
+            allOK = false;
+        }
+        if (allOK) {
+            history.push("/sucesso");
+        }
+    }
 
     return (
         <Div>
