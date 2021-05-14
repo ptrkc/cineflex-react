@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
     width: ${(props) => (props.size ? "83px" : "265px")};
-    border: 3px solid ${(props) => props.theme.fontColor};
+    border: 3px solid ${(props) => props.theme.textColor};
     height: 43px;
     background: ${(props) => props.theme.bgColor};
     border-radius: 4px;
@@ -14,7 +14,12 @@ const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.5s;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+        background: ${(props) => props.theme.textColor};
+        color: ${(props) => props.theme.bgColor};
+    }
 `;
 
 export default Button;

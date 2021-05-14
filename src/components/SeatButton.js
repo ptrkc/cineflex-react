@@ -40,8 +40,12 @@ const SeatBtn = styled.li`
     justify-content: center;
     align-items: center;
     transition: 0.2s;
+    cursor: pointer;
     &.selected {
         background: ${(props) => props.theme.selectedColor};
+    }
+    &:hover {
+        filter: brightness(0.8);
     }
 
     @media (min-width: 440px) {

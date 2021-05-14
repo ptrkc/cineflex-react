@@ -168,7 +168,7 @@ export default function Seats(props) {
                 console.log(c.idAssento);
                 return (
                     <InfoInputs
-                        key={c.idAssento}
+                        key={allSeats.find((s) => s.id === c.idAssento).name}
                         id={c.idAssento}
                         states={[ticketsToBuy, setTicketsToBuy]}
                     />
