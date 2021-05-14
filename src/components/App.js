@@ -20,7 +20,9 @@ export default function App() {
     });
     const [allSeats, setAllSeats] = useState([]);
 
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark" ? true : false
+    );
     console.clear();
     console.log("footerData");
     console.log(footerData);

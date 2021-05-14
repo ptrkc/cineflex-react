@@ -8,10 +8,12 @@ export default function Header(props) {
     const [darkMode, setDarkMode] = props.states;
 
     function toggleTheme() {
-        if (darkMode) {
+        if (localStorage.getItem("theme") === "dark") {
             setDarkMode(false);
+            localStorage.setItem("theme", "light");
         } else {
             setDarkMode(true);
+            localStorage.setItem("theme", "dark");
         }
     }
     const isAtHome = location.pathname !== "/";
