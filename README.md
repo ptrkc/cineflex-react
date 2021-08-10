@@ -2,6 +2,8 @@
 
 A clean and minimal web app for booking movie seats.
 
+https://user-images.githubusercontent.com/40273827/128805191-7c64dba9-04c5-4c35-9dc0-bbb8a54456f3.mp4
+
 Try it out now at https://cineflex-react.vercel.app/
 
 ## Technologies
