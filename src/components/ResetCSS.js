@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components";
+/* eslint-disable no-tabs */
+import { createGlobalStyle } from 'styled-components';
 
 const ResetCSS = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 

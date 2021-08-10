@@ -19,16 +19,22 @@ The following tools and frameworks were used in the construction of the project:
 ## How to run
 
 1. Clone this repository
-2. Install the dependencies
+2. Copy the file `.env.example` to your own `.env`. This app uses a provided API.
+
+```bash
+cp .env.example .env
+```
+
+3. Install the dependencies
 
 ```bash
 npm i
 ```
 
-3. Run it with
+4. Run it with
 
 ```bash
 npm start
 ```
 
-4. Open http://localhost:3000 on your browser
+5. Open http://localhost:3000 on your browser

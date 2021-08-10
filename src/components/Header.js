@@ -1,37 +1,38 @@
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
-import Button from "./Button";
+import { useHistory, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import Button from './Button';
 
 export default function Header(props) {
-    const history = useHistory();
-    const location = useLocation();
-    const [darkMode, setDarkMode] = props.states;
+  const history = useHistory();
+  const location = useLocation();
+  const { states } = props;
+  const [darkMode, setDarkMode] = states;
 
-    function toggleTheme() {
-        if (darkMode) {
-            setDarkMode(false);
-            localStorage.setItem("theme", "light");
-        } else {
-            setDarkMode(true);
-            localStorage.setItem("theme", "dark");
-        }
+  function toggleTheme() {
+    if (darkMode) {
+      setDarkMode(false);
+      localStorage.setItem('theme', 'light');
+    } else {
+      setDarkMode(true);
+      localStorage.setItem('theme', 'dark');
     }
-    const isAtHome = location.pathname !== "/";
-    return (
-        <StyledHeader>
-            <Button
-                className={isAtHome ? null : "hidden"}
-                size="small"
-                onClick={isAtHome ? () => history.goBack() : undefined}
-            >
-                <BackArrow />
-            </Button>
-            <span>CINEFLEX</span>
-            <Button size="small" onClick={toggleTheme}>
-                {darkMode ? "☀️" : "🌑"}
-            </Button>
-        </StyledHeader>
-    );
+  }
+  const isAtHome = location.pathname !== '/';
+  return (
+    <StyledHeader>
+      <Button
+        className={isAtHome ? null : 'hidden'}
+        size="small"
+        onClick={isAtHome ? () => history.goBack() : undefined}
+      >
+        <BackArrow />
+      </Button>
+      <span>CINEFLEX</span>
+      <Button size="small" onClick={toggleTheme}>
+        {darkMode ? '☀️' : '🌑'}
+      </Button>
+    </StyledHeader>
+  );
 }
 
 const StyledHeader = styled.div`

@@ -1,23 +1,23 @@
-import styled from "styled-components";
-import SeatButton from "./SeatButton";
+import styled from 'styled-components';
+import SeatButton from './SeatButton';
 
 export default function SeatsGuide() {
-    return (
-        <GuideStyle>
-            <div>
-                <SeatButton seat={{ isAvailable: true, selected: true }} />
-                Selecionado
-            </div>
-            <div>
-                <SeatButton seat={{ isAvailable: true, selected: false }} />
-                Disponível
-            </div>
-            <div>
-                <SeatButton seat={{ isAvailable: false, selected: false }} />
-                Indisponível
-            </div>
-        </GuideStyle>
-    );
+  return (
+    <GuideStyle>
+      <div>
+        <SeatButton seat={{ isAvailable: true, selected: true }} />
+        Selecionado
+      </div>
+      <div>
+        <SeatButton seat={{ isAvailable: true, selected: false }} />
+        Disponível
+      </div>
+      <div>
+        <SeatButton seat={{ isAvailable: false, selected: false }} />
+        Indisponível
+      </div>
+    </GuideStyle>
+  );
 }
 
 const GuideStyle = styled.div`

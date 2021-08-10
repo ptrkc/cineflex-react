@@ -1,92 +1,92 @@
-import axios from "axios";
-import styled from "styled-components";
-import { useState, useEffect } from "react";
-import Spinner from "./Spinner";
-import { useHistory } from "react-router";
-import Button from "./Button";
+import axios from 'axios';
+import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import Spinner from './Spinner';
+import Button from './Button';
 
 export default function Success(props) {
-    const [footerData, setFooterData, ticketsToBuy, allSeats] = props.states;
-    const [success, setSuccess] = useState(false);
-    const history = useHistory();
-    useEffect(() => {
-        if (!ticketsToBuy.compradores.length) {
-            backHome();
-        }
-        const buyTicketsRequest = axios.post(
-            "https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many",
-            ticketsToBuy
-        );
-        buyTicketsRequest.then((response) => {
-            setSuccess(true);
-        });
-        buyTicketsRequest.catch((response) => {
-            alert("Parece que algo deu errado. Tente novamente.");
-            history.goBack();
-        });
-        if (footerData.infoLoaded) {
-            setFooterData({
-                ...footerData,
-                infoLoaded: false,
-            });
-        }
-    }, []);
+  const { states } = props;
+  const [footerData, setFooterData, ticketsToBuy, allSeats] = states;
+  const [success, setSuccess] = useState(false);
+  const history = useHistory();
 
-    function backHome() {
-        history.push("/");
+  useEffect(() => {
+    if (!ticketsToBuy.compradores.length) {
+      history.push('/');
     }
+    const buyTicketsRequest = axios.post(
+      `${process.env.REACT_APP_API_URL}/seats/book-many`,
+      ticketsToBuy,
+    );
+    buyTicketsRequest.then(() => {
+      setSuccess(true);
+    });
+    buyTicketsRequest.catch(() => {
+      alert('Parece que algo deu errado. Tente novamente.');
+      history.goBack();
+    });
+    if (footerData.infoLoaded) {
+      setFooterData({
+        ...footerData,
+        infoLoaded: false,
+      });
+    }
+  }, []);
 
-    if (!success) {
-        return (
-            <MarginTop>
-                <Spinner />
-            </MarginTop>
-        );
-    } else {
-        return (
-            <Div>
-                <Title>Pedido feito com sucesso!</Title>
+  if (!success) {
+    return (
+      <MarginTop>
+        <Spinner />
+      </MarginTop>
+    );
+  }
+  return (
+    <Div>
+      <Title>Pedido feito com sucesso!</Title>
 
-                <Ticket>
-                    <div className="movie-info">
-                        <img
-                            src={footerData.posterURL}
-                            alt={footerData.title}
-                        />
-                        <Label>Filme e sessão:</Label>
-                        <p>{footerData.title}</p>
-                        <p>{footerData.date}</p>
-                        <p>{footerData.name}</p>
-                    </div>
-                    {ticketsToBuy.compradores.map((c) => {
-                        return (
-                            <div className="personal-data" key={c.idAssento}>
-                                <p>
-                                    <Label>Nome: </Label>
-                                    {c.nome}
-                                </p>
-                                <p>
-                                    <Label>CPF: </Label>
-                                    {c.cpf.slice(0, 3)}.{c.cpf.slice(3, 6)}.
-                                    {c.cpf.slice(6, 9)}-{c.cpf.slice(9, 11)}
-                                </p>
-                                <p>
-                                    <Label>Assento: </Label>
-                                    {
+      <Ticket>
+        <div className="movie-info">
+          <img
+            src={footerData.posterURL}
+            alt={footerData.title}
+          />
+          <Label>Filme e sessão:</Label>
+          <p>{footerData.title}</p>
+          <p>{footerData.date}</p>
+          <p>{footerData.name}</p>
+        </div>
+        {ticketsToBuy.compradores.map((c) => (
+          <div className="personal-data" key={c.idAssento}>
+            <p>
+              <Label>Nome: </Label>
+              {c.nome}
+            </p>
+            <p>
+              <Label>CPF: </Label>
+              {c.cpf.slice(0, 3)}
+              .
+              {c.cpf.slice(3, 6)}
+              .
+              {c.cpf.slice(6, 9)}
+              -
+              {c.cpf.slice(9, 11)}
+            </p>
+            <p>
+              <Label>Assento: </Label>
+              {
                                         allSeats.find(
-                                            (s) => s.id === c.idAssento
+                                          (s) => s.id === c.idAssento,
                                         ).name
                                     }
-                                </p>
-                            </div>
-                        );
-                    })}
-                </Ticket>
+            </p>
+          </div>
+        ))}
+      </Ticket>
 
-                <Button onClick={backHome}>Voltar pra Home</Button>
-            </Div>
-        );
-    }
+      <Button onClick={() => history.push('/')}>Voltar pra Home</Button>
+    </Div>
+  );
 }
 const MarginTop = styled.div`
     margin-top: 150px;

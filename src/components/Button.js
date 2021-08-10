@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Button = styled.button`
-    width: ${(props) => (props.size ? "83px" : "265px")};
+    width: ${(props) => (props.size ? '83px' : '265px')};
     border: 3px solid ${(props) => props.theme.textColor};
     height: 43px;
     background: ${(props) => props.theme.bgColor};

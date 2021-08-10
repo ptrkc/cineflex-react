@@ -1,13 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export default function Spinner(props) {
-    return (
-        <SpinnerStyle invert={props.invert}>
-            <div className="spinner-middle-div">
-                <div></div>
-            </div>
-        </SpinnerStyle>
-    );
+  const { invert } = props;
+  return (
+    <SpinnerStyle invert={invert}>
+      <div className="spinner-middle-div">
+        <div />
+      </div>
+    </SpinnerStyle>
+  );
 }
 
 const SpinnerStyle = styled.div`
@@ -37,8 +38,7 @@ const SpinnerStyle = styled.div`
         left: 10px;
         border-radius: 50%;
         box-shadow: 0 6.3px 0 0
-            ${(props) =>
-                props.invert ? props.theme.bgColor : props.theme.textColor};
+            ${(props) => (props.invert ? props.theme.bgColor : props.theme.textColor)};
         transform-origin: 40px 43.15px;
         box-sizing: content-box;
     }

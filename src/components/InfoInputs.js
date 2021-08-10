@@ -1,49 +1,50 @@
-import styled from "styled-components";
-export default function InfoInputs(props) {
-    const id = props.id;
-    const seatNumber = props.seatNumber;
-    const [ticketsToBuy, setTicketsToBuy] = props.states;
+import styled from 'styled-components';
 
-    function updateInfo(value, info) {
-        const newArr = [...ticketsToBuy.compradores];
-        if (info === "cpf") {
-            let onlyNumbers = value.replace(/\D/g, "").slice(0, 11);
-            newArr.find((c) => c.idAssento === id).cpf = onlyNumbers;
-        } else {
-            newArr.find((c) => c.idAssento === id).nome = value;
-        }
-        setTicketsToBuy({
-            ids: [...ticketsToBuy.ids],
-            compradores: [...newArr],
-        });
+export default function InfoInputs(props) {
+  const { id, seatNumber, states } = props;
+  const [ticketsToBuy, setTicketsToBuy] = states;
+
+  function updateInfo(value, info) {
+    const newArr = [...ticketsToBuy.compradores];
+    if (info === 'cpf') {
+      const onlyNumbers = value.replace(/\D/g, '').slice(0, 11);
+      newArr.find((c) => c.idAssento === id).cpf = onlyNumbers;
+    } else {
+      newArr.find((c) => c.idAssento === id).nome = value;
     }
-    return (
-        <>
-            <Title>ASSENTO {seatNumber}</Title>
-            <InputsStyle>
-                <p>Nome do espectador:</p>
-                <input
-                    type="text"
-                    value={
-                        ticketsToBuy.compradores.find((c) => c.idAssento === id)
-                            .nome
-                    }
-                    onChange={(e) => updateInfo(e.target.value, "nome")}
-                    placeholder="Digite o nome..."
-                ></input>
-                <p>CPF do espectador:</p>
-                <input
-                    type="text"
-                    value={
-                        ticketsToBuy.compradores.find((c) => c.idAssento === id)
-                            .cpf
-                    }
-                    onChange={(e) => updateInfo(e.target.value, "cpf")}
-                    placeholder="Digite o CPF..."
-                ></input>
-            </InputsStyle>
-        </>
-    );
+    setTicketsToBuy({
+      ids: [...ticketsToBuy.ids],
+      compradores: [...newArr],
+    });
+  }
+  return (
+    <>
+      <Title>
+        ASSENTO
+        {seatNumber}
+      </Title>
+      <InputsStyle>
+        <p>Nome do espectador:</p>
+        <input
+          type="text"
+          value={
+            ticketsToBuy.compradores.find((c) => c.idAssento === id).nome
+          }
+          onChange={(e) => updateInfo(e.target.value, 'nome')}
+          placeholder="Digite o nome..."
+        />
+        <p>CPF do espectador:</p>
+        <input
+          type="text"
+          value={
+            ticketsToBuy.compradores.find((c) => c.idAssento === id).cpf
+          }
+          onChange={(e) => updateInfo(e.target.value, 'cpf')}
+          placeholder="Digite o CPF..."
+        />
+      </InputsStyle>
+    </>
+  );
 }
 
 const Title = styled.span`
