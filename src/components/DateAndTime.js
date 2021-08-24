@@ -43,6 +43,7 @@ export default function DateAndTime(props) {
             {date.weekday}
             {' '}
             -
+            {' '}
             {date.date}
           </Day>
           <TimesList>
